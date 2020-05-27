@@ -166,7 +166,7 @@ int max(int a, int b) {
 }
 
 
-int avl_hieght(Tree *root) {
+int avl_height(Tree *root) {
     if (root == NULL) {
         return -1;
     }
@@ -174,7 +174,7 @@ int avl_hieght(Tree *root) {
         return 0;
     }
     else if (tree_is_node(root)) {
-        return max(avl_hieght(root->left), avl_hieght(root->right)) + 1;
+        return max(avl_height(root->left), avl_height(root->right)) + 1;
     }
     else {
         return -1;
@@ -237,12 +237,12 @@ Tree *avl_insert(int value, Tree *root) {
                 break;
             }
             else if (lr_root->is_left) {
-                h_left = avl_hieght(lr_last->root);
-                h_right = avl_hieght(lr_root->root->right);
+                h_left = avl_height(lr_last->root);
+                h_right = avl_height(lr_root->root->right);
             }
             else {
-                h_left = avl_hieght(lr_root->root->left);
-                h_right = avl_hieght(lr_last->root);
+                h_left = avl_height(lr_root->root->left);
+                h_right = avl_height(lr_last->root);
             }
 
             int bf = (h_left - h_right);
