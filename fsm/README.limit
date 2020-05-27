@@ -1,0 +1,41 @@
+-- Not a real coq program.
+-- Is a pseudocode like coq language.
+
+-- range(min, max)
+Inductive range (A B : Type) : Type :=
+  range : A -> B -> A * B.
+
+Definition min (r : range) : nat := first r.
+Definition max (r : range) : nat := second r.
+Definition length (r : range) : nat := (max r) + 1.
+
+
+-- State consider as a range type from 0 to S n1.
+Definition state (n : nat) : Type := range 0 (S n).
+Definition current_state (n : nat) (s : state) : Type := pair n s.
+
+
+Fixpoint multiple (l : list current_state) : nat :=
+  match l with
+  | nil => 1
+  | (a, s) :: b => (length s) * (multiple b).
+  
+
+Fixpoint count_status (l : list current_state) : nat :=
+  match l with
+  | nil => 0
+  | (a, s) :: b => a * (multiple b) + count_status b.
+
+
+Fixpoint count_range (l : list current_state) : nat :=
+  match l with
+  | nil => 1
+  | (a, s) :: b => (length s) * (count_range b).
+
+
+Definition total_state (before : list current_state)
+                       (after : list current_state) : nat :=
+  (count_range before) * (count_status before) + (count_status after).
+
+Definition last_status (l : list current_state) : nat := count_range l.
+Definition limit l := ((last_status l) ^ 2) <= 2^64. -- (if use int64_t).
