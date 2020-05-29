@@ -126,16 +126,31 @@ Tree *tree_right_move(Tree *root) {
 
 
 bool tree_is_leaf(Tree *root) {
+    return tree_is_leaf_static(root);
+}
+
+
+bool tree_is_leaf_static(const Tree const *root) {
     return (root->type == Leaf);
 }
 
 
 bool tree_is_node(Tree *root) {
+    return tree_is_node_static(root);
+}
+
+
+bool tree_is_node_static(const Tree const *root) {
     return (root->type == Node);
 }
 
 
 int tree_value(Tree *root) {
+    return tree_value_static(root);
+}
+
+
+int tree_value_static(const Tree const *root) {
     return root->value;
 }
 

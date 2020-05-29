@@ -35,8 +35,11 @@ Tree *tree_right_move(Tree *root);
 
 
 bool tree_is_leaf(Tree *root);
+bool tree_is_leaf_static(const Tree const *root);
 bool tree_is_node(Tree *root);
+bool tree_is_node_static(const Tree const *root);
 int tree_value(Tree *root);
+int tree_value_static(const Tree const *root);
 
 
 /* free node */
