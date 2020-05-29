@@ -1,13 +1,12 @@
 #ifndef STACK_STACK_DEFINE
 #define STACK_STACK_DEFINE 1
 
-#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
 
 
-#define LINE_printf(f, ...) printf("%s:%d: " f, __FILE__, __LINE__, __VA_ARGS__);
+#include "../../debug.h"
 
 
 #define NEW(OBJECT) malloc(sizeof(*OBJECT))
@@ -34,10 +33,6 @@ Stack * base_create(void * stack, Cloneable typeclass);
 Stack * base_create_move(const void * stack, Cloneable typeclass);
 Stack * base_push(void * stack, Stack *prev, Cloneable typeclass);
 Stack * base_push_move(const void * stack, Stack *prev, Cloneable typeclass);
-Stack * Stack_create(void * stack);
-Stack * Stack_create_move(const void * stack);
-Stack * Stack_push(void * stack, Stack *prev);
-Stack * Stack_push_move(const void * stack, Stack *prev);
 Stack * Stack_free(Ref_Stack s_ptr);
 void Stack_clear(Ref_Stack s_ptr);
 const Stack const * Stack_pop(const Stack const *s);

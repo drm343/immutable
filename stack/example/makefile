@@ -1,12 +1,12 @@
 MEM=valgrind --leak-check=full
 GDB_ENABLE=-g -O0
-LINK_LIB=`pkg-config --libs readline`
-TEST=./example_stack
-REMOVES=
+LINK_LIB=
+TEST=./example
+LIB_O=../stack_int.o ../stack_string.o
 
 
-example: stack.c ../stack_string.c ../stack.h ../stack.c
-	gcc $(GDB_ENABLE) $(LINK_LIB) -o example_stack stack.c ../stack_string.c
+example: stack.c $(LIB_O)
+	gcc $(GDB_ENABLE) $(LINK_LIB) -o $(TEST) stack.c $(LIB_O)
 
 .PHONY: mem test clean
 mem:
@@ -16,4 +16,4 @@ test:
 	$(TEST)
 
 clean:
-	rm $(TEST)
+	rm $(TEST) $(LIB_O)
